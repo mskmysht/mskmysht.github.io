@@ -4,17 +4,18 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>game01</title>
     <script type="text/javascript">
-var highscore = {
-    name: "highscore",
-    value: 0,
-    obj: document.getElementById("highscore")
-};
-
 window.onload = function() {
+    highscore = {
+        name: "highscore",
+        value: 0,
+        obj: document.getElementById("highscore")
+    };
+
     if (document.cookie) {
         var cookies = document.cookie.
             split("; ").
             map(function (x) {return x.split("=")});
+        console.log(cookies);
         var cookie = cookies.filter(function (x, i, self) {return x[0] == highscore.name});
         if (cookie.length == 1) {
             var value = unescape(cookie[0][1]);
@@ -24,6 +25,8 @@ window.onload = function() {
         } else {
             set_highscore(0);
         }
+    } else {
+        set_highscore(0);
     }
 }
 
@@ -40,7 +43,7 @@ function set_highscore(value) {
 }
 
 function update_highscore() {
-    highscore.innerHTML = highscore.value;
+    highscore.obj.innerHTML = highscore.value;
 }
     </script>
 </head>
